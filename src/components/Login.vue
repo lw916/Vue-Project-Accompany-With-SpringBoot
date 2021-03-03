@@ -14,7 +14,7 @@
             prefix-icon="el-icon-lock"
             v-model="LoginForm.password">
         </el-input>
-        <el-button type="primary">登 陆</el-button><el-button type="primary" @click="forgetDialogVisible = true">忘记密码</el-button>
+        <el-button type="primary" @click="login">登 陆</el-button><el-button type="primary" @click="forgetDialogVisible = true">忘记密码</el-button>
         <el-dialog
             title="忘记密码"
             v-model="forgetDialogVisible"
@@ -66,9 +66,23 @@ export default {
   },
   methods:{
     login(){
-
+      this.$http.post('/login/',this.$qs.stringify(this.LoginForm)).then(
+          response => {
+            if(response.data.flag == 200){
+              window.sessionStorage.setItem("user",this.LoginForm.username)
+              this.$router.push("/success")
+              this.$message.success(response.data.messages)
+            }else{
+              this.$message.error(response.data.messages)
+            }
+          }
+      ).catch(
+          error => {
+            console.log(error)
+          }
+      )
     }
-  }
+  },
 }
 </script>
 
