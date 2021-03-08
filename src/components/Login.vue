@@ -1,6 +1,6 @@
 <template>
   <el-container style="height: 100%">
-    <el-header>欢迎登陆</el-header>
+    <el-header>Title</el-header>
     <el-main>
       <div class="div">
         <el-image :src="require('../assets/logo.png')" style="width: 30%;height: 30%"></el-image>
@@ -42,7 +42,7 @@
         </el-dialog>
       </div>
     </el-main>
-    <el-footer>copyright @blask.cn</el-footer>
+    <el-footer>Footer</el-footer>
   </el-container>
 </template>
 
@@ -70,7 +70,7 @@ export default {
           response => {
             if(response.data.flag == 200){
               window.sessionStorage.setItem("user",this.LoginForm.username)
-              this.$router.push("/success")
+              this.$router.push("/home")
               this.$message.success(response.data.messages)
             }else{
               this.$message.error(response.data.messages)

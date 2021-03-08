@@ -10,12 +10,16 @@ const routes = [
         component:import("../components/Login")
     },
     {
-        path:"/success",
-        component:import("../components/Success")
-    },
-    {
         path:"/fail",
         component:import("../components/Fail")
+    },
+    {
+        path:"/home",
+        component:import("../components/Home")
+    },
+    {
+        path:"/access",
+        component: import("../components/Access")
     }
 ]
 
