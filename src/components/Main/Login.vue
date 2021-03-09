@@ -1,8 +1,6 @@
 <template>
   <el-container style="height:100%">
-    <el-header>
-      <i class="el-icon-arrow-left" style="float:left;line-height: 60px" @click="returnFrontPage"/> Title
-    </el-header>
+    <el-header>Title</el-header>
     <el-main>
       <el-main>
         <div class="div">
@@ -15,7 +13,9 @@
           <el-input
               placeholder="账户密码"
               prefix-icon="el-icon-lock"
-              v-model="LoginForm.password">
+              v-model="LoginForm.password"
+              type="password"
+          >
           </el-input>
           <el-button type="primary" @click="login">登 陆</el-button><el-button type="primary" @click="forgetDialogVisible = true">忘记密码</el-button>
           <el-dialog
@@ -28,18 +28,18 @@
               <el-input
                   prefix-icon="el-icon-user-solid"
                   placeholder="忘记账户的账户名"
-                  v-model="ForgetForm.forgetUsername">
+                  v-model="ForgetForm.username">
               </el-input>
               <el-input
                   prefix-icon="el-icon-message"
                   placeholder="注册时使用的邮箱"
-                  v-model="ForgetForm.forgetEmail">
+                  v-model="ForgetForm.email">
               </el-input>
             </div>
             <template #footer>
           <span class="dialog-footer">
           <el-button @click="forgetDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="forgetDialogVisible = false">找 回</el-button>
+          <el-button type="primary" @click="forget">找 回</el-button>
           </span>
             </template>
           </el-dialog>
@@ -64,8 +64,8 @@ export default {
       },
       forgetDialogVisible : false,
       ForgetForm:{
-        forgetUsername:null,
-        forgetEmail:null,
+        username:null,
+        email:null,
       },
     }
   },
@@ -84,6 +84,26 @@ export default {
       ).catch(
           error => {
             console.log(error)
+            this.forgetDialogVisible = false
+          }
+      )
+
+    },
+    forget(){
+      this.$http.post('/forget',this.$qs.stringify(this.ForgetForm)).then(
+          response => {
+            if(response.data.status == 200){
+              this.$message.success("您的密码找回成功，密码为："+response.data.value)
+              this.forgetDialogVisible = false
+            }else{
+              this.$message.error("密码找回失败，请检查输入信息。")
+              this.forgetDialogVisible = false
+            }
+          }
+      ).catch(
+          error => {
+            console.log(error)
+            this.forgetDialogVisible = false
           }
       )
     }
