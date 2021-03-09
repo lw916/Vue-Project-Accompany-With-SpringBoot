@@ -15,7 +15,7 @@ const routes = [
     },
     {
         path:"/errorLoginFail",
-        component: () => import("../components/Main/ErrorLoginFail")
+        component: () => import("../components/ErrorLoginFail")
     },
     {
         path:"/home",
@@ -24,11 +24,7 @@ const routes = [
     {
         path:"/access",
         component: () => import("../components/basic/Access")
-    },
-    {
-        path:"/pay",
-        component: () => import("../components/basic/Payment")
-    },
+    }
 ]
 
 export const router = createRouter({
