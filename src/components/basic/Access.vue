@@ -1,11 +1,11 @@
 <template>
   <el-container style="height: 100%">
-    <el-header><i class="el-icon-arrow-left" style="float:left;line-height: 60px"/>智能门禁</el-header>
+    <el-header><i class="el-icon-arrow-left" style="float:left;line-height: 60px" @click="returnFrontPage"/>智能门禁</el-header>
     <el-main>
       <div>
         <h1>欢迎回家</h1>
         <h3>当前开锁的大门为：{{door}}</h3>
-        <img src="../assets/pic/QRcode.png"/>
+        <img src="../../assets/pic/QRcode.png"/>
         <br>
         <el-dropdown size="mini" style="margin: 10px 0">
           <el-button type="primary" @click="QueryAccess">选择进入的大门<i class="el-icon-arrow-down el-icon--right"></i></el-button>
@@ -53,7 +53,11 @@ export default {
             }
         )
       }
+    },
+    returnFrontPage(){
+      this.$router.back()
     }
+
   }
 }
 </script>
