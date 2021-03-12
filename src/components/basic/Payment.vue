@@ -49,7 +49,7 @@ export default {
     queryPayment(){
       this.Payment = null
       this.prices = 0
-      this.$http.post("payment?username=" + window.sessionStorage.getItem("user")).then(
+      this.$http.get("payment?username=" + window.sessionStorage.getItem("user")).then(
           response => {
             if(response.data.status == 200){
               this.Payment = response.data.value

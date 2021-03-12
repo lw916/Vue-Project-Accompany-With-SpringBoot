@@ -7,6 +7,7 @@
           <h3>{{item}}</h3>
         </el-carousel-item>
       </el-carousel>
+      <el-button type="primary" @click="exit">安全退出</el-button>
     </el-main>
     <el-footer>Footer</el-footer>
   </el-container>
@@ -15,6 +16,12 @@
 <script>
 export default {
   name: "Home",
+  methods:{
+    exit(){
+      window.sessionStorage.clear()
+      this.$router.push("/login")
+    }
+  }
 }
 </script>
 

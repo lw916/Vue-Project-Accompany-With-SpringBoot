@@ -15,7 +15,7 @@ const routes = [
     },
     {
         path:"/errorLoginFail",
-        component: () => import("../components/ErrorLoginFail")
+        component: () => import("../components/Main/ErrorLoginFail")
     },
     {
         path:"/home",
@@ -24,6 +24,14 @@ const routes = [
     {
         path:"/access",
         component: () => import("../components/basic/Access")
+    },
+    {
+        path:"/payment",
+        component: () => import("../components/basic/Payment")
+    },
+    {
+        path:"/repair",
+        component: () => import("../components/basic/Repair")
     }
 ]
 
